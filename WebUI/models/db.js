@@ -1,19 +1,13 @@
 const mongoose = require("mongoose");
 
-// mongodb://localhost:30028/TestDB?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
-// mongodb://localhost:30028/TestDB?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
 var DB_engine = "mongodb://";
 var DB_domain = "localhost";
-var DB_port = ":30028";
+var DB_port = ":27017";
 var DB_database = "/TestDB";
-var DB_readPreference = "?readPreference=primary";
-var DB_appname = "&appname=MongoDB";
-var DB_Compass_direct_Connection= "%20Compass&directConnection=true";
-var DB_ssl = "&ssl=false";
+var DB_options = "?directConnection=true&serverSelectionTimeoutMS=2000";
+var DB_appname = "&appName=mongosh+1.3.0";
 
-console.log(DB_engine+DB_domain+DB_port+DB_database+DB_readPreference+DB_appname+DB_Compass_direct_Connection+DB_ssl)
-
-mongoose.connect(DB_engine+DB_domain+DB_port+DB_database+DB_readPreference+DB_appname+DB_Compass_direct_Connection+DB_ssl, {useNewUrlParser: true}, (err) => {
+mongoose.connect(DB_engine+DB_domain+DB_port+DB_database+DB_options+DB_appname, {useNewUrlParser: true}, (err) => {
     if(!err){
         console.log("MongoDB Conncetion Succeeded!")
     }

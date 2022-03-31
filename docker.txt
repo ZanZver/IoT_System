@@ -1,10 +1,6 @@
 docker network rm mongoCluster
 
 docker network create mongoCluster
-docker network create --driver bridge mongoCluster
-docker network create --driver host mongoCluster
-
-
 
 docker run -d -p 30017:27017 --name mongo_DB_1 --network mongoCluster mongo:5 mongod --replSet dockerMongoReplicaSet --bind_ip localhost,mongo_DB_1
 docker run -d -p 30028:27017 --name mongo_DB_2 --network mongoCluster mongo:5 mongod --replSet dockerMongoReplicaSet --bind_ip localhost,mongo_DB_2
