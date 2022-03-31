@@ -1,0 +1,75 @@
+{
+    "":"",
+    "IoT_Devices":{ //list of devices that are available for users
+        "1":{
+            "Name": "Smart light", // name of the device
+            "Devices":{
+                "1":{
+                    "Model": "SL29212", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                },
+                "2":{
+                    "Model": "SL291", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                }
+            }
+        }
+        "2":{
+            "Name": "Smart fridge",
+            "Devices":{
+                "1":{
+                    "Model": "FR123879872", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                },
+                "2":{
+                    "Model": "FR1982", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                }
+            }
+        }
+        "3":{
+            "Name": "Smart vacuum",
+            "Model": "", //
+            "Devices":{
+                "1":{
+                    "Model": "SV0571", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                },
+                "2":{
+                    "Model": "SV12048", //model of the device
+                    "Serial_Numbers": [], //list of serial numbers 
+                    "Update_Versions": [], //list of past updates, new one at the begining
+                    "Manufacturer": "",
+                    "Manufacturer_Date": "",
+                    "IoT_Standard_Support": [], //Zigbee, Z-wave, AppleHomeKit
+                    "Spare_Parts": []
+                }
+            }
+        }
+    }
+}
