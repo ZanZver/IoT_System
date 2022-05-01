@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 var DB_engine = "mongodb://";
 var DB_domain = "localhost";
-var DB_port = ":27017";
-var DB_database = "/TestDB";
+var DB_port = ":27019";
+var DB_database = "/initialDB";
 var DB_options = "?directConnection=true&serverSelectionTimeoutMS=2000";
 var DB_appname = "&appName=mongosh+1.3.0";
 
