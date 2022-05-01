@@ -12,7 +12,7 @@ from scipy import rand
 #connectToDB
 myclient = pymongo.MongoClient("mongodb://localhost:27019")
 mydb = myclient["initialDB"]
-colUsers = mydb["Users"]
+colUsers = mydb["users"]
 colIoT_Customer_Device = mydb["IoT_Customer_Device"]
 colIoT_Device_Info = mydb["IoT_Device_Info"]
 colIoT_Device_History = mydb["IoT_Device_History"]
@@ -626,7 +626,7 @@ def createUser(num):
         mydict = {
                 "Username": firstname + lastname,
                 "Password": randomword(10),
-                "email": firstname + "." + lastname + random_item + random_email,
+                "Email": firstname + "." + lastname + random_item + random_email,
                 "Name": firstname,
                 "Surname": lastname,
                 "Location": {

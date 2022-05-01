@@ -3,6 +3,7 @@ const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+//const User = mongoose.model('User');
 const Employee = mongoose.model('Employee');
 
 router.get('/', (req, res) => {
@@ -19,24 +20,26 @@ router.post('/', (req, res) => {
 });
 
 function insertRecord(req, res) {
-    var user = new User();
-    user.username = req.body.username;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.name = req.body.name;
-    user.surname = req.body.surname;
-    //user.addressLine1 = req.body.addressLine1;
-    //user.addressLine2 = req.body.addressLine2;
-    user.address = [req.body.addressLine1,req.body.addressLine2]
-    //
-    user.postcode = req.body.postcode;
-    user.city = req.body.city;
-    user.country = req.body.country;
-    console.log("User info");
-    console.log(req.body);
+    var user = new User({
+        Username : req.body.username,
+        Password : req.body.password,
+        Email : req.body.email,
+        Name : req.body.name,
+        Surname : req.body.surname,
+        Loation : {
+            Address : {
+                addressLine1 : req.body.addressLine1,
+                addressLine2: req.body.addressLine2
+            },
+            Postcode: req.body.postcode,
+            City : req.body.city,
+            Country : req.body.country
+        }
+    }
+    );
+
     user.save((err, doc) => {
         if (!err){  
-            console.log("Here 2");
             res.redirect('/home');
         }
         else {
