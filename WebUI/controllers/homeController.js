@@ -2,7 +2,9 @@
 const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
+const User = mongoose.model('User');
 const Employee = mongoose.model('Employee');
+const IoT_Customer_Device = mongoose.model("IoT_Customer_Device");
 
 router.get('/', (req, res) => {
     res.render("employee/homePage", {
@@ -18,37 +20,30 @@ router.post('/', (req, res) => {
 });
 
 function insertRecord(req, res) {
-    Employee.find((err, docs) => {
+    var userKeyID = "626f01d0574b1a1c1b8d2086";
+
+    IoT_Customer_Device.aggregate([
+        {$match: {UserID:userKeyID}},
+        {$unwind: "$Devices"
+        },
+        {$project: {
+            "smart_light" : "$Devices.smart_light",
+            "smart_fridge" : "$Devices.smart_fridge",
+            "smart_vacuum" : "$Devices.smart_vacuum",
+            "_id": 0
+        }}
+    ]).exec((err, docs) => {
         if (!err) {
+            console.log(docs);
+            //console.log(res.json(docs));
             res.render("employee/userPage", {
-                list: docs
+                list: docs[0]
             });
         }
         else {
             console.log('Error in retrieving employee list :' + err);
         }
-    }).lean();
-    //employee.fullName = req.body.fullName;
-    //employee.email = req.body.email;
-    //employee.mobile = req.body.mobile;
-    //employee.city = req.body.city;
-    /*
-    employee.save((err, doc) => {
-        if (!err)
-            res.redirect('employee/list');
-        else {
-            if (err.name == 'ValidationError') {
-                handleValidationError(err, req.body);
-                res.render("employee/homePage", {
-                    viewTitle: "User login error",
-                    employee: req.body
-                });
-            }
-            else
-                console.log('Error during record insertion : ' + err);
-        }
-        
-    });*/
+    })
 }
 
 router.get('/forgotPassword', (req, res) => {

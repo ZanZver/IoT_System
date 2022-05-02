@@ -13,9 +13,9 @@ from scipy import rand
 myclient = pymongo.MongoClient("mongodb://localhost:27019")
 mydb = myclient["initialDB"]
 colUsers = mydb["users"]
-colIoT_Customer_Device = mydb["IoT_Customer_Device"]
-colIoT_Device_Info = mydb["IoT_Device_Info"]
-colIoT_Device_History = mydb["IoT_Device_History"]
+colIoT_Customer_Device = mydb["iot_customer_devices"]
+colIoT_Device_Info = mydb["iot_device_info"]
+colIoT_Device_History = mydb["iot_device_history"]
 
 startDate = datetime.strptime('1/1/2008 1:30 PM', '%m/%d/%Y %I:%M %p')
 year2022 = datetime.strptime('1/1/2022 1:30 PM', '%m/%d/%Y %I:%M %p')
@@ -778,41 +778,43 @@ def createTheVauum():
     return vacDict
 
 def createDevices():
-    devDic ={"Smart light":{},
-             "Smart fridge":{},
-             "Smart vacuum":{}}
+    devDic ={"smart_light":{},
+             "smart_fridge":{},
+             "smart_vacuum":{}}
     numOfRandomLights = random.randrange(0,30)
     numOfRandomFridges = random.randrange(0,3)
     numOfRandomVacumms = random.randrange(0,10)
     for i in range(numOfRandomLights):
-        devDic["Smart light"] = {**devDic["Smart light"],  **{str(i):createTheSmartLight()}}
+        devDic["smart_light"] = {**devDic["smart_light"],  **{str(i):createTheSmartLight()}}
         
     for i in range(numOfRandomFridges):
-        devDic["Smart fridge"] = {**devDic["Smart fridge"],  **{str(i):createTheFridge()}}
+        devDic["smart_fridge"] = {**devDic["smart_fridge"],  **{str(i):createTheFridge()}}
         
     for i in range(numOfRandomVacumms):
-        devDic["Smart vacuum"] = {**devDic["Smart vacuum"],  **{str(i):createTheVauum()}}
+        devDic["smart_vacuum"] = {**devDic["smart_vacuum"],  **{str(i):createTheVauum()}}
         
     return devDic
 
 def createDeviceInfo():
     #print(str(lights_model_list).replace("""'""",'''"''' ))
-    devInfoDic = {"Smart light":{},
-                  "Smart fridge":{},
-                  "Smart vacuum":{}}
+    devInfoDic = {"smart_light":{},
+                  "smart_fridge":{},
+                  "smart_vacuum":{}}
     for i in list(lights_model_list.keys()):
-        devInfoDic["Smart light"] = {**devInfoDic["Smart light"],  **{i:list(lights_model_list.values())}}
+        devInfoDic["smart_light"] = {**devInfoDic["smart_light"],  **{i:list(lights_model_list.values())}}
         
     for i in list(fridge_model_list.keys()):
-        devInfoDic["Smart fridge"] = {**devInfoDic["Smart fridge"],  **{i:list(fridge_model_list.values())}}
+        devInfoDic["smart_fridge"] = {**devInfoDic["smart_fridge"],  **{i:list(fridge_model_list.values())}}
         
     for i in list(vacuum_model_list.keys()):
-        devInfoDic["Smart vacuum"] = {**devInfoDic["Smart vacuum"],  **{i:list(vacuum_model_list.values())}}
+        devInfoDic["smart_vacuum"] = {**devInfoDic["smart_vacuum"],  **{i:list(vacuum_model_list.values())}}
     
     return devInfoDic
     
 def createItAll(UserID):
-    colIoT_Customer_Device.insert_one({str(UserID):createDevices()})
+    colIoT_Customer_Device.insert_one({ "UserID" : str(UserID),
+                                        "Devices":createDevices()
+                                       })
     
     dict1 = createDeviceInfo()
     try:

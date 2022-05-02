@@ -1,41 +1,5 @@
 const mongoose = require("mongoose");
 
-var userSchema2 = new mongoose.Schema({
-    Username:{
-        type: String
-    },
-    Password:{
-        type: String
-    },
-    Email:{
-        type: String,
-        required: "This field is required."
-    },
-    Name:{
-        type: String,
-        required: "This field is required."
-    },
-    Surname:{
-        type: String
-    },
-    AddressLine1:{
-        type: String
-    },
-    AddressLine2:{
-        type: String
-    },
-    Postcode:{
-        type: String
-    },
-    City:{
-        type: String
-    },
-    Country:{
-        type: String
-        
-    }
-});
-
 var addressSchema = new mongoose.Schema({
     addressLine1:{
         type: String

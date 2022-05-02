@@ -18,3 +18,4 @@ mongoose.connect(DB_engine+DB_domain+DB_port+DB_database+DB_options+DB_appname, 
 
 require("./employee.model");
 require("./user.model.js");
+require("./IoT_Customer_Device.model.js");

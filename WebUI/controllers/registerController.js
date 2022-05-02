@@ -3,7 +3,6 @@ const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-//const User = mongoose.model('User');
 const Employee = mongoose.model('Employee');
 
 router.get('/', (req, res) => {
