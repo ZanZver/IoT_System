@@ -64,7 +64,8 @@
 
                 <td>
                     <a href=""><i class="fa fa-cogs" aria-hidden="true"></i></a> 
-                    <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href="/devices/smart_fridge/delete/{{@key}}" onclick="return confirm('Are you sure to delete this record ?');">
+                        <i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td> 
         </tr>
         {{/each}}

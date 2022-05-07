@@ -785,7 +785,11 @@ def createDevices():
     numOfRandomFridges = random.randrange(0,3)
     numOfRandomVacumms = random.randrange(0,10)
     for i in range(numOfRandomLights):
-        devDic["smart_light"] = {**devDic["smart_light"],  **{str(i):createTheSmartLight()}}
+        tempDict = createTheSmartLight()
+        devDic["smart_light"] = {**devDic["smart_light"],  **{str(i):{"Device_ID":str(i),
+                                                                      "Device_Details":tempDict["Device_Details"],
+                                                                      "Device_Status":tempDict["Device_Status"]
+                                                                      }}}
         
     for i in range(numOfRandomFridges):
         devDic["smart_fridge"] = {**devDic["smart_fridge"],  **{str(i):createTheFridge()}}
@@ -812,8 +816,14 @@ def createDeviceInfo():
     return devInfoDic
     
 def createItAll(UserID):
+    myDict = createDevices()
+    #print(myDict["smart_light"])
+    
     colIoT_Customer_Device.insert_one({ "UserID" : str(UserID),
-                                        "Devices":createDevices()
+                                        #"Devices":createDevices()
+                                        "smart_light": myDict["smart_light"],
+                                        "smart_fridge": myDict["smart_fridge"],
+                                        "smart_vacuum": myDict["smart_vacuum"]
                                        })
     
     dict1 = createDeviceInfo()
@@ -831,6 +841,7 @@ def createItAll(UserID):
         colIoT_Device_Info.update_one(oldquery, newquery)
     except:
         colIoT_Device_Info.insert_one({"Device_Info":dict1})
+    
         
 def createHistory(userID):
     lightHistoryGenerator = random.randrange(1,30)
@@ -846,3 +857,4 @@ def createHistory(userID):
         colIoT_Device_History.insert_one({str(userID): {"3": createTheVauum()["Device_Status"]}})
 
 createUser(10)
+#createDevices()

@@ -10,9 +10,14 @@ var IoT_Customer_Device = new mongoose.Schema({
     UserID: {
         type: String
     },
-    Devices:{
-        type: devicesSchema
-    }
-});
+    Smart_light:{},
+    Smart_fridge:{},
+    Smart_vacuum:{}
+},{
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+    }});
 
 mongoose.model("IoT_Customer_Device", IoT_Customer_Device);

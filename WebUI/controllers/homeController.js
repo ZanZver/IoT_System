@@ -20,18 +20,14 @@ router.post('/', (req, res) => {
 });
 
 function insertRecord(req, res) {
-    var userKeyID = "627684d385abcb7f2331455d";
+    var userKeyID = "6276a2a8e59469e642802063";
 
     IoT_Customer_Device.aggregate([
         {$match: {UserID:userKeyID}},
-        {$unwind: "$Devices"
-        },
         {$project: {
-            "smart_light" : "$Devices.smart_light",
-            "smart_fridge" : "$Devices.smart_fridge",
-            "smart_vacuum" : "$Devices.smart_vacuum",
-            "_id": 0
+            _id:0,UserID:0
         }}
+        
     ]).exec((err, docs) => {
         if (!err) {
             const valuesValue2 = {};
@@ -39,10 +35,12 @@ function insertRecord(req, res) {
             Object.keys(docs[0]).forEach(function(key) {
                 valuesValue2[key] = Object.keys(docs[0][key]).length;
              })
-            console.log(valuesValue2);
+             
+            //console.log(docs);
             res.render("employee/userPage", {
                 list: valuesValue2
             });
+            
         }
         else {
             console.log('Error in retrieving employee list :' + err);
