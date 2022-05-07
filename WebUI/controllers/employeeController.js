@@ -30,6 +30,7 @@ function insertRecord(req, res) {
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
+
                 res.render("employee/addOrEdit", {
                     viewTitle: "Insert Employee",
                     employee: req.body
@@ -62,6 +63,7 @@ function updateRecord(req, res) {
 router.get('/list', (req, res) => {
     Employee.find((err, docs) => {
         if (!err) {
+            console.log(docs);
             res.render("employee/list", {
                 list: docs
             });

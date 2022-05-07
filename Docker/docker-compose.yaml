@@ -36,6 +36,7 @@ services:
       TERM: xterm
     volumes:
       - mongo_ReplicaSet1_Node3:/data/db
+  
   mongo_ReplicaSet2_Node1:
     container_name: mongo_ReplicaSet2_Node1
     image: mongo

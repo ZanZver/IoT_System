@@ -654,14 +654,14 @@ def createTheSmartLight():
     
     Light_ID = {
             "Device_Details":{
-                    "Online_Status": str(random.choice([True, False])),
+                    "Online_Status": random.choice([True, False]),
                     "DeviceManufacturer": randomDeviceManufacturer,
                     "Model": randomModel,
                     "Serial_Number": randomSerial_Number,
                     "Last_Update": {
                         "Date": str(random_date(startDate, datetime.now())), 
                         "Version": randomVersion, 
-                        "Update_Pending": str(random.choice([True, False]))
+                        "Update_Pending": random.choice([True, False])
                     },
                     "Communication_Protocol_Set":randomListOfSetDevices,
                     "Spare_Parts": spareParts
@@ -684,14 +684,14 @@ def createTheFridge():
     randomFreezeerFood = random.sample(food, random.randrange(1,len(food)//3))
     Fridge_ID = {
                 "Device_Details": {
-                    "Online_Status": str(random.choice([True, False])), 
+                    "Online_Status": random.choice([True, False]), 
                     "DeviceManufacturer": randomDeviceManufacturer,
                     "Model": randomModel,
                     "Serial_Number": randomSerial_Number,
                     "Last_Update": {
                         "Date": str(random_date(startDate, datetime.now())),
                         "Version": randomVersion,
-                        "Update_Pending": str(random.choice([True, False]))
+                        "Update_Pending": random.choice([True, False])
                     },
                     "Communication_Protocol_Set": randomListOfSetDevices
                 },
@@ -749,14 +749,14 @@ def createTheVauum():
         
     vacDict = {
             "Device_Details": {
-                "Online_Status": str(random.choice([True, False])),
+                "Online_Status": random.choice([True, False]),
                 "DeviceManufacturer": randomDeviceManufacturer,
                 "Model": randomModel,
                 "Serial_Number": randomSerial_Number,
                 "Last_Update": {
                     "Date": str(random_date(startDate, datetime.now())), 
                     "Version": randomVersion, 
-                    "Update_Pending": str(random.choice([True, False]))
+                    "Update_Pending": random.choice([True, False])
                 },
                 "Communication_Protocol_Set": randomListOfSetDevices
             },

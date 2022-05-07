@@ -9,6 +9,9 @@ const employeeController = require("./controllers/employeeController");
 const homeController = require("./controllers/homeController");
 const forgotPasswordController = require("./controllers/forgotPasswordController");
 const registerController = require("./controllers/registerController");
+const lightsController = require("./controllers/lightsController");
+const fridgeController = require("./controllers/fridgeController");
+const vacuumController = require("./controllers/vacuumController");
 
 var app = express();
 app.use(bodyparser.urlencoded({
@@ -27,3 +30,6 @@ app.use("/employee", employeeController); //routs to employeeController
 app.use("/home", homeController); //routs to employeeController
 app.use("/forgotPassword", forgotPasswordController); //routs to employeeController
 app.use("/register", registerController); //routs to employeeController
+app.use("/devices/smart_light", lightsController);
+app.use("/devices/smart_fridge", fridgeController);
+app.use("/devices/smart_vacuum", vacuumController);

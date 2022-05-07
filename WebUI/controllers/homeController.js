@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
 });
 
 function insertRecord(req, res) {
-    var userKeyID = "626f01d0574b1a1c1b8d2086";
+    var userKeyID = "627684d385abcb7f2331455d";
 
     IoT_Customer_Device.aggregate([
         {$match: {UserID:userKeyID}},
@@ -34,10 +34,14 @@ function insertRecord(req, res) {
         }}
     ]).exec((err, docs) => {
         if (!err) {
-            console.log(docs);
-            //console.log(res.json(docs));
+            const valuesValue2 = {};
+            
+            Object.keys(docs[0]).forEach(function(key) {
+                valuesValue2[key] = Object.keys(docs[0][key]).length;
+             })
+            console.log(valuesValue2);
             res.render("employee/userPage", {
-                list: docs[0]
+                list: valuesValue2
             });
         }
         else {
