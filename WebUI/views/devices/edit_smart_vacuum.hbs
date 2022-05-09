@@ -1,0 +1,61 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/devices/smart_vacuum" method="POST" autocomplete="off">
+    <!-- <input type="hidden" name="_id" value="{{employee._id}}"> -->
+    <div class="form-group">
+        <label>Device ID</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_ID" placeholder="Device ID" value="{{device_smart_vacuum.Device_ID}}">
+    </div>
+    <div class="form-group">
+        <label>Online Status</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Online_Status" placeholder="Online Status" value="{{device_smart_vacuum.Device_Details.Online_Status}}">
+    </div>
+    <div class="form-group">
+        <label>Device Manufacturer</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.DeviceManufacturer" placeholder="Device Manufacturer" value="{{device_smart_vacuum.Device_Details.DeviceManufacturer}}">
+    </div>
+    <div class="form-group">
+        <label>Model</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Model" placeholder="Model" value="{{device_smart_vacuum.Device_Details.Model}}">
+    </div>
+    <div class="form-group">
+        <label>Serial Number</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Serial_Number" placeholder="Serial Number" value="{{device_smart_vacuum.Device_Details.Serial_Number}}">
+    </div>
+    <div class="form-group">
+        <label>Last Update Date</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Last_Update.Date" placeholder="Last Update Date" value="{{device_smart_vacuum.Device_Details.Last_Update.Date}}">
+    </div>
+    <div class="form-group">
+        <label>Last Update Version</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Last_Update.Version" placeholder="Last Update Version Version" value="{{device_smart_vacuum.Device_Details.Last_Update.Version}}">
+    </div>
+    <div class="form-group">
+        <label>Update Pending</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Last_Update.Update_Pending" placeholder="Update Pending" value="{{device_smart_vacuum.Device_Details.Last_Update.Update_Pending}}">
+    </div>
+    <div class="form-group">
+        <label>Communication Protocol Set</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Communication_Protocol_Set" placeholder="Communication Protocol Set" value="{{device_smart_vacuum.Device_Details.Communication_Protocol_Set}}">
+    </div>
+    <div class="form-group">
+        <label>Spare Parts</label>
+        <input type="text" class="form-control" name="smart_vacuum.{{device_smart_vacuum.Device_ID}}.Device_Details.Spare_Parts" placeholder="Spare Parts" value="{{device_smart_vacuum.Device_Details.Spare_Parts}}">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Mobile</label>
+            <input type="text" class="form-control" placeholder="Mobile">
+        </div>
+        <div class="form-group col-md-6">
+            <label>City</label>
+            <input type="text" class="form-control" placeholder="City">
+        </div>
+    </div>
+    <div class="form-group">
+        <!--<a href="/devices/smart_vacuum/save/{{device_smart_vacuum.Device_ID}}"><i class="fa fa-list-alt"></i> Update</a>-->
+        <button type="submit" class="btn btn-info" ><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>

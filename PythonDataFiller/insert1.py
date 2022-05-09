@@ -792,10 +792,20 @@ def createDevices():
                                                                       }}}
         
     for i in range(numOfRandomFridges):
-        devDic["smart_fridge"] = {**devDic["smart_fridge"],  **{str(i):createTheFridge()}}
+        #devDic["smart_fridge"] = {**devDic["smart_fridge"],  **{str(i):createTheFridge()}}
+        tempDict = createTheFridge()
+        devDic["smart_fridge"] = {**devDic["smart_fridge"],  **{str(i):{"Device_ID":str(i),
+                                                                      "Device_Details":tempDict["Device_Details"],
+                                                                      "Device_Status":tempDict["Device_Status"]
+                                                                      }}}
         
     for i in range(numOfRandomVacumms):
-        devDic["smart_vacuum"] = {**devDic["smart_vacuum"],  **{str(i):createTheVauum()}}
+        #devDic["smart_vacuum"] = {**devDic["smart_vacuum"],  **{str(i):createTheVauum()}}
+        tempDict = createTheVauum()
+        devDic["smart_vacuum"] = {**devDic["smart_vacuum"],  **{str(i):{"Device_ID":str(i),
+                                                                      "Device_Details":tempDict["Device_Details"],
+                                                                      "Device_Status":tempDict["Device_Status"]
+                                                                      }}}
         
     return devDic
 
