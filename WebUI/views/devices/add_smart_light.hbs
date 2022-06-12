@@ -1,0 +1,97 @@
+<h3>{{viewTitle}}</h3>
+<form action="/devices/smart_light" method="POST" autocomplete="off">
+    <button type="Back" class="btn btn-login" style="float: right;"><i class="fa fa-database"></i> Back</button>
+</form>
+<form action="/devices/smart_light" method="POST" autocomplete="off">
+    <!-- 
+    <div class="form-group">
+        <label>Device ID</label>
+        <input type="text" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_ID" placeholder="Device ID" value="{{device_smart_light.Device_ID}}">
+    </div>
+    
+    <div class="form-group">
+        <label>Online Status</label>
+        <input type="text" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_Details.Online_Status" placeholder="Online Status" value="{{device_smart_light.Device_Details.Online_Status}}">
+    </div>
+    -->
+    <div>
+    <span>Select device manufacturer: </span>
+        <br>
+        <select id="DeviceManufacturer">
+        {{#each device_info_smart_light}}
+            <option value={{@key}}>{{@key}}</option>
+        {{/each}}
+    </select>
+    </div>
+    <div>
+    <span>Select device model: </span>
+        <br>
+        <select id="DeviceModel" onChange="update()">
+        {{#each device_info_smart_light.Philips}}
+            <option value="DeviceModelValue">{{@key}}</option>
+        {{/each}}
+    </select>
+    </div>
+
+    <div class="form-group">
+        <label>Serial Number</label>
+        <input type="text" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_Details.Serial_Number"
+         placeholder="Serial Number" value="{{device_smart_light.Device_Details.Serial_Number}}">
+    </div>
+
+    <div class="form-group">
+        <label>Communication Protocol Set</label>
+        		<script type="text/javascript">
+                function update() {
+                    var select = document.getElementById('DeviceModel');
+                    var option = select.options[select.selectedIndex];
+                    //document.write(option.innerHTML);
+                    //document.write(select.innerHTML);
+                    const element = document.getElementById("id01");
+                    element.innerHTML = option.innerHTML;
+                    var temp = option.innerHTML;
+                    var strBuild = "\{{device_info_smart_light.Philips."+temp+".IoT_Standard_Support.0}}";
+
+                    var Myelement = document.getElementById("id02");
+                    Myelement.setAttribute('value',toString(strBuild));
+                    document.getElementById('id02').innerHTML = 
+                    '<span value="{{device_info_smart_light.Philips.S-Li-9.IoT_Standard_Support}}"> '+strBuild+' </span>';
+                    
+                }
+
+                update();
+		</script>
+        <span id="id02"></span>
+        <!--<input type="text" id="id02" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_Details.Communication_Protocol_Set" 
+        placeholder="Communication Protocol Set" value="{{device_info_smart_light.Philips.S-Li-9.IoT_Standard_Support}}"> -->
+    </div>
+    <div class="form-group">
+        <label>Spare Parts</label>
+        <input type="text" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_Details.Spare_Parts" placeholder="Spare Parts" value="{{device_smart_light.Device_Details.Spare_Parts}}">
+    </div>
+    <!--
+    <div class="form-group">
+        <label>Device Colour</label>
+        <input type="text" class="form-control" name="smart_light.{{device_smart_light.Device_ID}}.Device_Status.Colour" placeholder="Device Colour" value="{{device_smart_light.Device_Status.Colour}}">
+    </div>
+    -->
+
+
+    <!--
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Mobile</label>
+            <input type="text" class="form-control" placeholder="Mobile">
+        </div>
+        <div class="form-group col-md-6">
+            <label>City</label>
+            <input type="text" class="form-control" placeholder="City">
+        </div>
+    </div>
+    -->
+    <div class="form-group">
+        <!--<a href="/devices/smart_light/save/{{device_smart_light.Device_ID}}"><i class="fa fa-list-alt"></i> Update</a>-->
+        <button type="submit" class="btn btn-info" ><i class="fa fa-database"></i> Submit</button>
+        <!--<a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>-->
+    </div>
+</form>

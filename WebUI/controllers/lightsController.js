@@ -6,9 +6,10 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Employee = mongoose.model('Employee');
 const IoT_Customer_Device = mongoose.model("IoT_Customer_Device");
+const IoT_Device_Info = mongoose.model("IoT_Device_Info");
 
 function updateRecord(req, res) {
-    var userKeyID = "62786354667fe8741957fb2d";
+    var userKeyID = "6280e95696737775cbc590d7";
     IoT_Customer_Device.findOneAndUpdate(
         { UserID: userKeyID }, 
         [{$set:req.body}], 
@@ -33,7 +34,7 @@ function updateRecord(req, res) {
 }
 
 router.get('/', (req, res) => {
-    let userKeyID =  "62786354667fe8741957fb2d";
+    let userKeyID =  "6280e95696737775cbc590d7";
     IoT_Customer_Device.aggregate([
         {$match: {UserID:userKeyID}},
         {$project: {
@@ -58,7 +59,7 @@ router.post('/', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
     itemId = req.params.id;
-    userKeyID = "62786354667fe8741957fb2d";
+    userKeyID = "6280e95696737775cbc590d7";
     IoT_Customer_Device.findOne(
         {UserID: userKeyID},
         {"_id":0}
@@ -75,7 +76,7 @@ router.get('/edit/:id', (req, res) => {
 });
 
 router.get('/delete/:id', (req, res) => {
-    let userKeyID =  "62786354667fe8741957fb2d";
+    let userKeyID =  "6280e95696737775cbc590d7";
     let removeLoc = "smart_light.";
     removeLoc += req.params.id;
 
@@ -90,4 +91,22 @@ router.get('/delete/:id', (req, res) => {
         }
     );
 });
+
+router.get('/add', (req, res) => {
+        IoT_Device_Info.findOne(
+        {},
+        {smart_light:1}
+        ).lean().exec(function (err, data) {
+            if (!err) {
+                res.render("devices/add_smart_light", {
+                    viewTitle: "Add smart light",
+                    device_info_smart_light: data.smart_light
+                });
+            }
+            else { console.log('Error in device edit :' + err); };
+        }
+        );
+});
+
+
 module.exports = router;

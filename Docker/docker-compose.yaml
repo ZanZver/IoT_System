@@ -36,6 +36,30 @@ services:
       TERM: xterm
     volumes:
       - mongo_ReplicaSet1_Node3:/data/db
+  mongo_ReplicaSet1_Arbiter:
+    container_name: mongo_ReplicaSet1_Arbiter
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet1 --dbpath /data/db --port 27017
+    ports:
+      - 40138:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet1_Arbiter:/data/db
+  mongo_ReplicaSet1_Backup:
+    container_name: mongo_ReplicaSet1_Backup
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet1 --dbpath /data/db --port 27017
+    ports:
+      - 40139:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet1_Backup:/data/db
   
   mongo_ReplicaSet2_Node1:
     container_name: mongo_ReplicaSet2_Node1
@@ -73,6 +97,31 @@ services:
       TERM: xterm
     volumes:
       - mongo_ReplicaSet2_Node3:/data/db
+  mongo_ReplicaSet2_Arbiter:
+    container_name: mongo_ReplicaSet2_Arbiter
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet2 --dbpath /data/db --port 27017
+    ports:
+      - 40238:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet2_Arbiter:/data/db
+  mongo_ReplicaSet2_Backup:
+    container_name: mongo_ReplicaSet2_Backup
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet2 --dbpath /data/db --port 27017
+    ports:
+      - 40239:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet2_Backup:/data/db
+
   mongo_ReplicaSet3_Node1:
     container_name: mongo_ReplicaSet3_Node1
     image: mongo
@@ -109,16 +158,45 @@ services:
       TERM: xterm
     volumes:
       - mongo_ReplicaSet3_Node3:/data/db
-
+  mongo_ReplicaSet3_Arbiter:
+    container_name: mongo_ReplicaSet3_Arbiter
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet3 --dbpath /data/db --port 27017
+    ports:
+      - 40338:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet3_Arbiter:/data/db
+  mongo_ReplicaSet3_Backup:
+    container_name: mongo_ReplicaSet3_Backup
+    image: mongo
+    command: mongod --shardsvr --replSet mongo_ReplicaSet3 --dbpath /data/db --port 27017
+    ports:
+      - 40339:27017
+    expose:
+      - "27017"
+    environment:
+      TERM: xterm
+    volumes:
+      - mongo_ReplicaSet3_Backup:/data/db
 
 
 volumes:
   mongo_ReplicaSet1_Node1: {}
   mongo_ReplicaSet1_Node2: {}
   mongo_ReplicaSet1_Node3: {}
+  mongo_ReplicaSet1_Arbiter: {}
+  mongo_ReplicaSet1_Backup: {}
   mongo_ReplicaSet2_Node1: {}
   mongo_ReplicaSet2_Node2: {}
   mongo_ReplicaSet2_Node3: {}
+  mongo_ReplicaSet2_Arbiter: {}
+  mongo_ReplicaSet2_Backup: {}
   mongo_ReplicaSet3_Node1: {}
   mongo_ReplicaSet3_Node2: {}
   mongo_ReplicaSet3_Node3: {}
+  mongo_ReplicaSet3_Arbiter: {}
+  mongo_ReplicaSet3_Backup: {}

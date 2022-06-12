@@ -13,14 +13,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    if (req.body._id == '')
+    //if (req.body._id == ''){
         insertRecord(req, res);
-        else
-        updateRecord(req, res);
+    //}
+    //else{
+    //    console.log("Test2");
+    //    insertRecord(req, res);
+    //}
 });
 
 function insertRecord(req, res) {
-    var userKeyID = "62786354667fe8741957fb2d";
+    var userKeyID = "6280e95696737775cbc590d7";
 
     IoT_Customer_Device.aggregate([
         {$match: {UserID:userKeyID}},

@@ -7,7 +7,7 @@ const Employee = mongoose.model('Employee');
 const IoT_Customer_Device = mongoose.model("IoT_Customer_Device");
 
 function updateRecord(req, res) {
-    var userKeyID = "62786354667fe8741957fb2d";
+    var userKeyID = "6280e95696737775cbc590d7";
     IoT_Customer_Device.findOneAndUpdate(
         { UserID: userKeyID }, 
         [{$set:req.body}], 
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    let userKeyID =  "62786354667fe8741957fb2d";
+    let userKeyID =  "6280e95696737775cbc590d7";
     IoT_Customer_Device.aggregate([
         {$match: {UserID:userKeyID}},
         {$project: {
@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
 
 router.get('/edit/:id', (req, res) => {
     itemId = req.params.id;
-    userKeyID = "62786354667fe8741957fb2d";
+    userKeyID = "6280e95696737775cbc590d7";
     IoT_Customer_Device.findOne(
         {UserID: userKeyID},
         {"_id":0}
@@ -75,7 +75,7 @@ router.get('/edit/:id', (req, res) => {
 });
 
 router.get('/delete/:id', (req, res) => {
-    let userKeyID =  "62786354667fe8741957fb2d";
+    let userKeyID =  "6280e95696737775cbc590d7";
     let removeLoc = "smart_fridge.";
     removeLoc += req.params.id;
 

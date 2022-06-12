@@ -1,8 +1,8 @@
 {
-    "modelName": "New Model",
+    "modelName": "IoT_Model",
     "collections": [
         {
-            "collectionName": "Users",
+            "collectionName": "users",
             "type": "object",
             "properties": [
                 {
@@ -167,16 +167,14 @@
                 "collation": "null"
             },
             "GUID": "71f11280-b59d-11ec-9d49-116af812be7b",
-            "hackoladeMeta": {
-                "validationErrors": {}
-            }
+            "hackoladeMeta": {}
         },
         {
-            "collectionName": "IoT devices",
+            "collectionName": "iot_customer_devices",
             "type": "object",
             "properties": [
                 {
-                    "name": "User_ID",
+                    "name": "Device_Type",
                     "hackoladeMeta": {},
                     "isActivated": true,
                     "type": "document",
@@ -188,17 +186,6 @@
                             "type": "document",
                             "properties": [
                                 {
-                                    "name": "Name",
-                                    "hackoladeMeta": {},
-                                    "isActivated": true,
-                                    "type": "string",
-                                    "GUID": "10161130-b685-11ec-97d7-bd190db71c3c",
-                                    "error": {
-                                        "name": false,
-                                        "code": false
-                                    }
-                                },
-                                {
                                     "name": "Device_Details",
                                     "hackoladeMeta": {},
                                     "isActivated": true,
@@ -209,18 +196,26 @@
                                             "hackoladeMeta": {},
                                             "isActivated": true,
                                             "type": "string",
-                                            "GUID": "10161132-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21f2-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
                                             }
                                         },
                                         {
+                                            "name": "Device_Manufacturer",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "string",
+                                            "GUID": "dda323b0-d15e-11ec-84e6-f5b5ad04f184",
+                                            "error": {}
+                                        },
+                                        {
                                             "name": "Model",
                                             "hackoladeMeta": {},
                                             "isActivated": true,
                                             "type": "string",
-                                            "GUID": "10161133-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21f3-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -231,7 +226,7 @@
                                             "hackoladeMeta": {},
                                             "isActivated": true,
                                             "type": "numeric",
-                                            "GUID": "10161134-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21f4-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -249,7 +244,7 @@
                                                     "isActivated": true,
                                                     "type": "date",
                                                     "primaryKey": false,
-                                                    "GUID": "10161136-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef21f6-d15e-11ec-84e6-f5b5ad04f184",
                                                     "error": {
                                                         "name": false,
                                                         "code": false
@@ -260,7 +255,7 @@
                                                     "hackoladeMeta": {},
                                                     "isActivated": true,
                                                     "type": "string",
-                                                    "GUID": "10163840-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef21f7-d15e-11ec-84e6-f5b5ad04f184",
                                                     "error": {
                                                         "name": false,
                                                         "code": false
@@ -272,7 +267,7 @@
                                                     "isActivated": true,
                                                     "type": "binary",
                                                     "primaryKey": false,
-                                                    "GUID": "10163841-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef21f8-d15e-11ec-84e6-f5b5ad04f184",
                                                     "error": {
                                                         "name": false,
                                                         "code": false
@@ -280,7 +275,7 @@
                                                 }
                                             ],
                                             "additionalProperties": false,
-                                            "GUID": "10161135-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21f5-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -296,21 +291,40 @@
                                                     "hackoladeMeta": {},
                                                     "isActivated": true,
                                                     "type": "string",
-                                                    "GUID": "10163843-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef21fa-d15e-11ec-84e6-f5b5ad04f184",
                                                     "arrayItem": true,
                                                     "arrayParentType": "array"
                                                 }
                                             ],
                                             "additionalItems": true,
-                                            "GUID": "10163842-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21f9-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
                                             }
+                                        },
+                                        {
+                                            "name": "Spare_Parts",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "array",
+                                            "properties": [
+                                                {
+                                                    "hackoladeMeta": {},
+                                                    "isActivated": true,
+                                                    "type": "string",
+                                                    "GUID": "1fd73aa0-d15f-11ec-84e6-f5b5ad04f184",
+                                                    "arrayItem": true,
+                                                    "arrayParentType": "array"
+                                                }
+                                            ],
+                                            "additionalItems": true,
+                                            "GUID": "1fd0d200-d15f-11ec-84e6-f5b5ad04f184",
+                                            "error": {}
                                         }
                                     ],
                                     "additionalProperties": false,
-                                    "GUID": "10161131-b685-11ec-97d7-bd190db71c3c",
+                                    "GUID": "b2ef21f1-d15e-11ec-84e6-f5b5ad04f184",
                                     "error": {
                                         "name": false,
                                         "code": false
@@ -327,7 +341,7 @@
                                             "hackoladeMeta": {},
                                             "isActivated": true,
                                             "type": "string",
-                                            "GUID": "10163845-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21fc-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -338,7 +352,7 @@
                                             "hackoladeMeta": {},
                                             "isActivated": true,
                                             "type": "string",
-                                            "GUID": "10163846-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21fd-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -354,13 +368,13 @@
                                                     "hackoladeMeta": {},
                                                     "isActivated": true,
                                                     "type": "string",
-                                                    "GUID": "10163848-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef21ff-d15e-11ec-84e6-f5b5ad04f184",
                                                     "arrayItem": true,
                                                     "arrayParentType": "array"
                                                 }
                                             ],
                                             "additionalItems": true,
-                                            "GUID": "10163847-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef21fe-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -376,13 +390,13 @@
                                                     "hackoladeMeta": {},
                                                     "isActivated": true,
                                                     "type": "string",
-                                                    "GUID": "1016384a-b685-11ec-97d7-bd190db71c3c",
+                                                    "GUID": "b2ef2201-d15e-11ec-84e6-f5b5ad04f184",
                                                     "arrayItem": true,
                                                     "arrayParentType": "array"
                                                 }
                                             ],
                                             "additionalItems": true,
-                                            "GUID": "10163849-b685-11ec-97d7-bd190db71c3c",
+                                            "GUID": "b2ef2200-d15e-11ec-84e6-f5b5ad04f184",
                                             "error": {
                                                 "name": false,
                                                 "code": false
@@ -390,7 +404,7 @@
                                         }
                                     ],
                                     "additionalProperties": false,
-                                    "GUID": "10163844-b685-11ec-97d7-bd190db71c3c",
+                                    "GUID": "b2ef21fb-d15e-11ec-84e6-f5b5ad04f184",
                                     "error": {
                                         "name": false,
                                         "code": false
@@ -398,7 +412,7 @@
                                 }
                             ],
                             "additionalProperties": false,
-                            "GUID": "1015ea20-b685-11ec-97d7-bd190db71c3c",
+                            "GUID": "b2eefae0-d15e-11ec-84e6-f5b5ad04f184",
                             "error": {
                                 "name": false,
                                 "code": false
@@ -408,182 +422,7 @@
                         }
                     ],
                     "additionalProperties": false,
-                    "GUID": "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "error": {
-                        "name": false,
-                        "code": false
-                    }
-                },
-                {
-                    "name": "ioT_Device_Info",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "document",
-                    "properties": [
-                        {
-                            "name": "Device_Group",
-                            "hackoladeMeta": {},
-                            "isActivated": true,
-                            "type": "document",
-                            "properties": [
-                                {
-                                    "name": "Device name",
-                                    "hackoladeMeta": {},
-                                    "isActivated": true,
-                                    "type": "string",
-                                    "GUID": "24cd13f0-b688-11ec-97d7-bd190db71c3c",
-                                    "error": {
-                                        "name": false,
-                                        "code": false
-                                    }
-                                },
-                                {
-                                    "name": "Device_ID",
-                                    "hackoladeMeta": {},
-                                    "isActivated": true,
-                                    "type": "document",
-                                    "properties": [
-                                        {
-                                            "name": "Model",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "string",
-                                            "GUID": "56dd8b90-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Serial_Numbers",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "5e460f60-b688-11ec-97d7-bd190db71c3c",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "5e3d35c0-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Update_Versions",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "695ec9f0-b688-11ec-97d7-bd190db71c3c",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "69579e00-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Manufacturer",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "string",
-                                            "GUID": "70d8b2e0-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Manufacturer_Date",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "date",
-                                            "primaryKey": false,
-                                            "GUID": "7d8505c0-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "IoT_Standard_Support",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "857cf850-b688-11ec-97d7-bd190db71c3c",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "85764190-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Spare_Parts",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "8c2f99a0-b688-11ec-97d7-bd190db71c3c",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "8c2894c0-b688-11ec-97d7-bd190db71c3c",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        }
-                                    ],
-                                    "additionalProperties": false,
-                                    "GUID": "355fc8c0-b688-11ec-97d7-bd190db71c3c",
-                                    "error": {
-                                        "name": false,
-                                        "code": false
-                                    }
-                                }
-                            ],
-                            "additionalProperties": false,
-                            "GUID": "144f6dc0-b688-11ec-97d7-bd190db71c3c",
-                            "error": {
-                                "name": false,
-                                "code": false
-                            }
-                        }
-                    ],
-                    "additionalProperties": false,
-                    "GUID": "01ddb530-b687-11ec-97d7-bd190db71c3c",
+                    "GUID": "a3855cc0-d15e-11ec-84e6-f5b5ad04f184",
                     "error": {
                         "name": false,
                         "code": false
@@ -608,12 +447,10 @@
                 "collation": "null"
             },
             "GUID": "b45baa40-b683-11ec-97d7-bd190db71c3c",
-            "hackoladeMeta": {
-                "validationErrors": {}
-            }
+            "hackoladeMeta": {}
         },
         {
-            "collectionName": "History  status",
+            "collectionName": "iot_device_history",
             "type": "object",
             "properties": [
                 {
@@ -629,78 +466,11 @@
                             "type": "document",
                             "properties": [
                                 {
-                                    "name": "Device_Status",
+                                    "name": "Old_Device_Status",
                                     "hackoladeMeta": {},
                                     "isActivated": true,
                                     "type": "document",
-                                    "properties": [
-                                        {
-                                            "name": "FridgeTemerature",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "string",
-                                            "GUID": "b755c172-c61b-11ec-9b63-656fb029c392",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "FreezerTemperature",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "string",
-                                            "GUID": "b755c173-c61b-11ec-9b63-656fb029c392",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Food_In_Fridge",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "b755c175-c61b-11ec-9b63-656fb029c392",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "b755c174-c61b-11ec-9b63-656fb029c392",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        },
-                                        {
-                                            "name": "Food_In_Freezeer",
-                                            "hackoladeMeta": {},
-                                            "isActivated": true,
-                                            "type": "array",
-                                            "properties": [
-                                                {
-                                                    "hackoladeMeta": {},
-                                                    "isActivated": true,
-                                                    "type": "string",
-                                                    "GUID": "b755c177-c61b-11ec-9b63-656fb029c392",
-                                                    "arrayItem": true,
-                                                    "arrayParentType": "array"
-                                                }
-                                            ],
-                                            "additionalItems": true,
-                                            "GUID": "b755c176-c61b-11ec-9b63-656fb029c392",
-                                            "error": {
-                                                "name": false,
-                                                "code": false
-                                            }
-                                        }
-                                    ],
+                                    "properties": [],
                                     "additionalProperties": false,
                                     "GUID": "b755c170-c61b-11ec-9b63-656fb029c392",
                                     "error": {
@@ -745,6 +515,170 @@
                 "collation": "null"
             },
             "GUID": "25604c00-c61a-11ec-9b63-656fb029c392"
+        },
+        {
+            "collectionName": "iot_device_info",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "Device_Type",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "document",
+                    "properties": [
+                        {
+                            "name": "Manufacturer",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "type": "document",
+                            "properties": [
+                                {
+                                    "name": "Model",
+                                    "hackoladeMeta": {},
+                                    "isActivated": true,
+                                    "type": "document",
+                                    "properties": [
+                                        {
+                                            "name": "Past_Updates",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "array",
+                                            "properties": [
+                                                {
+                                                    "hackoladeMeta": {},
+                                                    "isActivated": true,
+                                                    "type": "string",
+                                                    "GUID": "c8fcb0d0-d15d-11ec-84e6-f5b5ad04f184",
+                                                    "arrayItem": true,
+                                                    "arrayParentType": "array"
+                                                }
+                                            ],
+                                            "additionalItems": true,
+                                            "GUID": "923f2be0-d15d-11ec-84e6-f5b5ad04f184",
+                                            "error": {
+                                                "name": false,
+                                                "code": false
+                                            },
+                                            "foreignCollection": "",
+                                            "foreignField": []
+                                        },
+                                        {
+                                            "name": "Serial_Numbers",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "array",
+                                            "properties": [
+                                                {
+                                                    "hackoladeMeta": {},
+                                                    "isActivated": true,
+                                                    "type": "string",
+                                                    "GUID": "e83872e2-d15d-11ec-84e6-f5b5ad04f184",
+                                                    "arrayItem": true,
+                                                    "arrayParentType": "array"
+                                                }
+                                            ],
+                                            "additionalItems": true,
+                                            "GUID": "e83872e0-d15d-11ec-84e6-f5b5ad04f184",
+                                            "error": {
+                                                "name": false,
+                                                "code": false
+                                            },
+                                            "foreignCollection": "",
+                                            "foreignField": []
+                                        },
+                                        {
+                                            "name": "IoT_Standard_Support",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "array",
+                                            "properties": [
+                                                {
+                                                    "hackoladeMeta": {},
+                                                    "isActivated": true,
+                                                    "type": "string",
+                                                    "GUID": "14a680b0-d15e-11ec-84e6-f5b5ad04f184",
+                                                    "arrayItem": true,
+                                                    "arrayParentType": "array"
+                                                }
+                                            ],
+                                            "additionalItems": true,
+                                            "GUID": "14a659a0-d15e-11ec-84e6-f5b5ad04f184",
+                                            "error": {
+                                                "name": false,
+                                                "code": false
+                                            },
+                                            "foreignCollection": "",
+                                            "foreignField": []
+                                        },
+                                        {
+                                            "name": "Spare_Parts",
+                                            "hackoladeMeta": {},
+                                            "isActivated": true,
+                                            "type": "array",
+                                            "properties": [
+                                                {
+                                                    "hackoladeMeta": {},
+                                                    "isActivated": true,
+                                                    "type": "string",
+                                                    "GUID": "15832510-d15e-11ec-84e6-f5b5ad04f184",
+                                                    "arrayItem": true,
+                                                    "arrayParentType": "array"
+                                                }
+                                            ],
+                                            "additionalItems": true,
+                                            "GUID": "1582fe00-d15e-11ec-84e6-f5b5ad04f184",
+                                            "error": {
+                                                "name": false,
+                                                "code": false
+                                            },
+                                            "foreignCollection": "",
+                                            "foreignField": []
+                                        }
+                                    ],
+                                    "additionalProperties": false,
+                                    "GUID": "63c2b071-d15d-11ec-84e6-f5b5ad04f184",
+                                    "error": {
+                                        "name": false,
+                                        "code": false
+                                    }
+                                }
+                            ],
+                            "additionalProperties": false,
+                            "GUID": "63c2b070-d15d-11ec-84e6-f5b5ad04f184",
+                            "error": {
+                                "name": false,
+                                "code": false
+                            }
+                        }
+                    ],
+                    "additionalProperties": false,
+                    "GUID": "63c21430-d15d-11ec-84e6-f5b5ad04f184",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "foreignCollection": "",
+                    "foreignField": []
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "889b2c70-d15c-11ec-84e6-f5b5ad04f184"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "unique": true,
+                "collation": "null"
+            },
+            "GUID": "8897aa00-d15c-11ec-84e6-f5b5ad04f184"
         }
     ],
     "buckets": [],
@@ -753,9 +687,9 @@
     "users": [],
     "diagramViews": [],
     "idToNameHashTable": {
-        "71f11280-b59d-11ec-9d49-116af812be7b": "Users",
+        "71f11280-b59d-11ec-9d49-116af812be7b": "users",
         "f0086e20-b59d-11ec-9d49-116af812be7b": "Address",
-        "b45baa40-b683-11ec-97d7-bd190db71c3c": "IoT devices",
+        "b45baa40-b683-11ec-97d7-bd190db71c3c": "iot_customer_devices",
         "8cd8cec0-b684-11ec-97d7-bd190db71c3c": "Location",
         "8cd91ce0-b684-11ec-97d7-bd190db71c3c": "Address",
         "8cd91ce2-b684-11ec-97d7-bd190db71c3c": "Postcode",
@@ -766,38 +700,32 @@
         "8ce32f00-b684-11ec-97d7-bd190db71c3c": "email",
         "8cf53060-b684-11ec-97d7-bd190db71c3c": "Name",
         "8ceccbf0-b684-11ec-97d7-bd190db71c3c": "Surname",
-        "03951410-b685-11ec-97d7-bd190db71c3c": "User_ID",
-        "1015ea20-b685-11ec-97d7-bd190db71c3c": "Device_ID",
-        "10161130-b685-11ec-97d7-bd190db71c3c": "Name",
-        "10161131-b685-11ec-97d7-bd190db71c3c": "Device_Details",
-        "10161132-b685-11ec-97d7-bd190db71c3c": "Online_Status",
-        "10161133-b685-11ec-97d7-bd190db71c3c": "Model",
-        "10161134-b685-11ec-97d7-bd190db71c3c": "Serial_Number",
-        "10161135-b685-11ec-97d7-bd190db71c3c": "Last_Update",
-        "10161136-b685-11ec-97d7-bd190db71c3c": "Date",
-        "10163840-b685-11ec-97d7-bd190db71c3c": "Version",
-        "10163841-b685-11ec-97d7-bd190db71c3c": "Update_Pending",
-        "10163842-b685-11ec-97d7-bd190db71c3c": "Communication_Protocol_Set",
-        "01ddb530-b687-11ec-97d7-bd190db71c3c": "ioT_Device_Info",
-        "144f6dc0-b688-11ec-97d7-bd190db71c3c": "Device_Group",
-        "24cd13f0-b688-11ec-97d7-bd190db71c3c": "Device name",
-        "355fc8c0-b688-11ec-97d7-bd190db71c3c": "Device_ID",
-        "56dd8b90-b688-11ec-97d7-bd190db71c3c": "Model",
-        "5e3d35c0-b688-11ec-97d7-bd190db71c3c": "Serial_Numbers",
-        "69579e00-b688-11ec-97d7-bd190db71c3c": "Update_Versions",
-        "70d8b2e0-b688-11ec-97d7-bd190db71c3c": "Manufacturer",
-        "7d8505c0-b688-11ec-97d7-bd190db71c3c": "Manufacturer_Date",
-        "85764190-b688-11ec-97d7-bd190db71c3c": "IoT_Standard_Support",
-        "8c2894c0-b688-11ec-97d7-bd190db71c3c": "Spare_Parts",
-        "25604c00-c61a-11ec-9b63-656fb029c392": "History  status",
+        "25604c00-c61a-11ec-9b63-656fb029c392": "iot_device_history",
         "8098f540-c61a-11ec-9b63-656fb029c392": "User_ID",
         "7ad55260-c61b-11ec-9b63-656fb029c392": "Device_ID",
-        "10163844-b685-11ec-97d7-bd190db71c3c": "Device_Status",
-        "b755c170-c61b-11ec-9b63-656fb029c392": "Device_Status",
-        "b755c172-c61b-11ec-9b63-656fb029c392": "FridgeTemerature",
-        "b755c173-c61b-11ec-9b63-656fb029c392": "FreezerTemperature",
-        "b755c174-c61b-11ec-9b63-656fb029c392": "Food_In_Fridge",
-        "b755c176-c61b-11ec-9b63-656fb029c392": "Food_In_Freezeer"
+        "b755c170-c61b-11ec-9b63-656fb029c392": "Old_Device_Status",
+        "8897aa00-d15c-11ec-84e6-f5b5ad04f184": "iot_device_info",
+        "63c21430-d15d-11ec-84e6-f5b5ad04f184": "Device_Type",
+        "63c2b070-d15d-11ec-84e6-f5b5ad04f184": "Manufacturer",
+        "63c2b071-d15d-11ec-84e6-f5b5ad04f184": "Model",
+        "923f2be0-d15d-11ec-84e6-f5b5ad04f184": "Past_Updates",
+        "e83872e0-d15d-11ec-84e6-f5b5ad04f184": "Serial_Numbers",
+        "14a659a0-d15e-11ec-84e6-f5b5ad04f184": "IoT_Standard_Support",
+        "1582fe00-d15e-11ec-84e6-f5b5ad04f184": "Spare_Parts",
+        "a3855cc0-d15e-11ec-84e6-f5b5ad04f184": "Device_Type",
+        "b2eefae0-d15e-11ec-84e6-f5b5ad04f184": "Device_ID",
+        "b2ef21f1-d15e-11ec-84e6-f5b5ad04f184": "Device_Details",
+        "b2ef21f2-d15e-11ec-84e6-f5b5ad04f184": "Online_Status",
+        "b2ef21f3-d15e-11ec-84e6-f5b5ad04f184": "Model",
+        "b2ef21f4-d15e-11ec-84e6-f5b5ad04f184": "Serial_Number",
+        "b2ef21f5-d15e-11ec-84e6-f5b5ad04f184": "Last_Update",
+        "b2ef21f6-d15e-11ec-84e6-f5b5ad04f184": "Date",
+        "b2ef21f7-d15e-11ec-84e6-f5b5ad04f184": "Version",
+        "b2ef21f8-d15e-11ec-84e6-f5b5ad04f184": "Update_Pending",
+        "b2ef21fb-d15e-11ec-84e6-f5b5ad04f184": "Device_Status",
+        "dda323b0-d15e-11ec-84e6-f5b5ad04f184": "Device_Manufacturer",
+        "b2ef21f9-d15e-11ec-84e6-f5b5ad04f184": "Communication_Protocol_Set",
+        "1fd0d200-d15f-11ec-84e6-f5b5ad04f184": "Spare_Parts"
     },
     "definitions": {
         "type": "definitions",
@@ -822,7 +750,7 @@
     "creationTS": "2022-04-06T11:33:00.136Z",
     "GUID": "502ea590-b59d-11ec-9d49-116af812be7b",
     "isLineageEnabled": false,
-    "lastModifTS": "2022-04-29T02:55:09.747Z",
+    "lastModifTS": "2022-05-11T19:25:06.378Z",
     "persistenceSchemaVersion": "6",
     "isCreatedByPlugin": true,
     "pluginInformation": {
@@ -831,7 +759,12 @@
     "applicationInformation": {
         "version": "6.0.5"
     },
-    "hackoladeMeta": {},
+    "hackoladeMeta": {
+        "validationErrors": {
+            "modelName": false
+        }
+    },
+    "author": "Zan Zver",
     "settings": {
         "centralPane": {
             "dbLevel": {
@@ -842,32 +775,45 @@
                         "y": 163,
                         "width": 196,
                         "height": 213,
-                        "color": {}
+                        "color": {
+                            "hex": "#9c28b1"
+                        }
                     },
                     {
                         "GUID": "b45baa40-b683-11ec-97d7-bd190db71c3c",
                         "x": 259.86666666666645,
                         "y": 159.40000000000006,
                         "width": 353,
-                        "height": 609,
-                        "color": {}
+                        "height": 429,
+                        "color": {
+                            "hex": "#03a9f5"
+                        }
                     },
                     {
                         "GUID": "25604c00-c61a-11ec-9b63-656fb029c392",
-                        "x": 660,
-                        "y": 156,
-                        "width": 203,
-                        "height": 51,
-                        "color": {}
+                        "x": 664,
+                        "y": 161,
+                        "width": 267,
+                        "height": 87,
+                        "color": {
+                            "hex": "#2196f3"
+                        }
+                    },
+                    {
+                        "GUID": "8897aa00-d15c-11ec-84e6-f5b5ad04f184",
+                        "x": 661,
+                        "y": 304,
+                        "width": 309,
+                        "height": 231,
+                        "color": {
+                            "hex": "#673bb7"
+                        }
                     }
                 ],
                 "buckets": [],
                 "collapsedNodes": [
                     "71f11280-b59d-11ec-9d49-116af812be7b8cd8cec0-b684-11ec-97d7-bd190db71c3c8cd91ce0-b684-11ec-97d7-bd190db71c3c",
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c01ddb530-b687-11ec-97d7-bd190db71c3c144f6dc0-b688-11ec-97d7-bd190db71c3c355fc8c0-b688-11ec-97d7-bd190db71c3c69579e00-b688-11ec-97d7-bd190db71c3c",
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c01ddb530-b687-11ec-97d7-bd190db71c3c144f6dc0-b688-11ec-97d7-bd190db71c3c355fc8c0-b688-11ec-97d7-bd190db71c3c85764190-b688-11ec-97d7-bd190db71c3c",
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c01ddb530-b687-11ec-97d7-bd190db71c3c144f6dc0-b688-11ec-97d7-bd190db71c3c355fc8c0-b688-11ec-97d7-bd190db71c3c8c2894c0-b688-11ec-97d7-bd190db71c3c",
-                    "25604c00-c61a-11ec-9b63-656fb029c3928098f540-c61a-11ec-9b63-656fb029c392"
+                    "25604c00-c61a-11ec-9b63-656fb029c3928098f540-c61a-11ec-9b63-656fb029c3927ad55260-c61b-11ec-9b63-656fb029c392b755c170-c61b-11ec-9b63-656fb029c392"
                 ],
                 "activeRelationship": "",
                 "activeRelationshipFields": {
@@ -895,79 +841,9 @@
             "collapsedNodes": [
                 [
                     "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "1015ea20-b685-11ec-97d7-bd190db71c3c",
-                    "10161131-b685-11ec-97d7-bd190db71c3c",
-                    "10161135-b685-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "1015ea20-b685-11ec-97d7-bd190db71c3c",
-                    "10161131-b685-11ec-97d7-bd190db71c3c",
-                    "10163842-b685-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "1015ea20-b685-11ec-97d7-bd190db71c3c",
-                    "10161131-b685-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "1015ea20-b685-11ec-97d7-bd190db71c3c",
-                    "10163844-b685-11ec-97d7-bd190db71c3c",
-                    "10163847-b685-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "03951410-b685-11ec-97d7-bd190db71c3c",
-                    "1015ea20-b685-11ec-97d7-bd190db71c3c",
-                    "10163844-b685-11ec-97d7-bd190db71c3c",
-                    "10163849-b685-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "01ddb530-b687-11ec-97d7-bd190db71c3c",
-                    "144f6dc0-b688-11ec-97d7-bd190db71c3c",
-                    "355fc8c0-b688-11ec-97d7-bd190db71c3c",
-                    "5e3d35c0-b688-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "01ddb530-b687-11ec-97d7-bd190db71c3c",
-                    "144f6dc0-b688-11ec-97d7-bd190db71c3c",
-                    "355fc8c0-b688-11ec-97d7-bd190db71c3c",
-                    "69579e00-b688-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "01ddb530-b687-11ec-97d7-bd190db71c3c",
-                    "144f6dc0-b688-11ec-97d7-bd190db71c3c",
-                    "355fc8c0-b688-11ec-97d7-bd190db71c3c",
-                    "85764190-b688-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "b45baa40-b683-11ec-97d7-bd190db71c3c",
-                    "01ddb530-b687-11ec-97d7-bd190db71c3c",
-                    "144f6dc0-b688-11ec-97d7-bd190db71c3c",
-                    "355fc8c0-b688-11ec-97d7-bd190db71c3c",
-                    "8c2894c0-b688-11ec-97d7-bd190db71c3c"
-                ],
-                [
-                    "25604c00-c61a-11ec-9b63-656fb029c392",
-                    "8098f540-c61a-11ec-9b63-656fb029c392",
-                    "7ad55260-c61b-11ec-9b63-656fb029c392",
-                    "b755c170-c61b-11ec-9b63-656fb029c392",
-                    "b755c174-c61b-11ec-9b63-656fb029c392"
-                ],
-                [
-                    "25604c00-c61a-11ec-9b63-656fb029c392",
-                    "8098f540-c61a-11ec-9b63-656fb029c392",
-                    "7ad55260-c61b-11ec-9b63-656fb029c392",
-                    "b755c170-c61b-11ec-9b63-656fb029c392",
-                    "b755c176-c61b-11ec-9b63-656fb029c392"
+                    "a3855cc0-d15e-11ec-84e6-f5b5ad04f184",
+                    "b2eefae0-d15e-11ec-84e6-f5b5ad04f184",
+                    "b2ef21f1-d15e-11ec-84e6-f5b5ad04f184"
                 ]
             ],
             "shouldDistributeCollections": false

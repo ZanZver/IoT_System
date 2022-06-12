@@ -827,10 +827,7 @@ def createDeviceInfo():
     
 def createItAll(UserID):
     myDict = createDevices()
-    #print(myDict["smart_light"])
-    
     colIoT_Customer_Device.insert_one({ "UserID" : str(UserID),
-                                        #"Devices":createDevices()
                                         "smart_light": myDict["smart_light"],
                                         "smart_fridge": myDict["smart_fridge"],
                                         "smart_vacuum": myDict["smart_vacuum"]
@@ -838,19 +835,19 @@ def createItAll(UserID):
     
     dict1 = createDeviceInfo()
     try:
-        dict2 = colIoT_Device_Info.find_one()["Device_Info"]
+        dict2 = colIoT_Device_Info.find_one()
         for deviceTypes in dict1.keys():
             for manufacturer in dict1[deviceTypes].keys():
                 for modelName in list(dict1[deviceTypes][manufacturer])[0].keys():
                     for serialNumber in list(dict2[deviceTypes][manufacturer])[0][modelName]["Serial_Numbers"]:
                         list(dict1[deviceTypes][manufacturer])[0][modelName]["Serial_Numbers"].append(serialNumber)
-                    
-        oldquery = { "Device_Info": colIoT_Device_Info.find_one()["Device_Info"] }
-        newquery = { "$set": { "Device_Info": dict1 } }
-
+        
+        oldquery = colIoT_Device_Info.find_one()
+        newquery = { "$set": dict1 }
+        
         colIoT_Device_Info.update_one(oldquery, newquery)
     except:
-        colIoT_Device_Info.insert_one({"Device_Info":dict1})
+        colIoT_Device_Info.insert_one(dict1)
     
         
 def createHistory(userID):
@@ -866,5 +863,6 @@ def createHistory(userID):
     for i in range(vacuumHistoryGenerator):
         colIoT_Device_History.insert_one({str(userID): {"3": createTheVauum()["Device_Status"]}})
 
-createUser(10)
-#createDevices()
+
+createUser(1)
+#createItAll(3)
