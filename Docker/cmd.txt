@@ -1,0 +1,133 @@
+#========================================================================================================================
+#docker compose config
+#========================================================================================================================
+#setup replica set nodes - 3 nodes per 3 replica sets -> 9 docker nodes are created
+sudo docker-compose -f docker-compose.yaml up -d
+#setup config -> 3 config (docker) servers are running
+sudo docker-compose -f mongod.yaml up -d
+#setup router -> 3 mongos (router) dockers are running
+sudo docker-compose -f mongos.yaml up -d
+
+#========================================================================================================================
+#configure config servers replica set
+#========================================================================================================================
+#replica set 1
+docker exec -it mongo_Config1 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    })
+' | mongosh"
+
+#replica set 2
+docker exec -it mongo_Config2 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    }
+)' | mongosh"
+
+#replica set 3
+docker exec -it mongo_Config3 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    }
+)' | mongosh"
+
+#========================================================================================================================
+#check config server replica set status
+#========================================================================================================================
+docker exec -it mongo_Config1 bash -c "echo 'rs.status()' | mongosh"
+
+#========================================================================================================================
+#build shard replica set
+#========================================================================================================================
+#replica set 1
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet1\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet1_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet1_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet1_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet1_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet1_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+
+#replica set 2
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet2\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet2_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet2_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet2_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet2_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet2_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+
+#replica set 3
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet3\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet3_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet3_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet3_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet3_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet3_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+
+#========================================================================================================================
+#check status primary-secondary
+#========================================================================================================================
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'rs.status()' | mongosh"
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'rs.status()' | mongosh"
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'rs.status()' | mongosh"
+
+#========================================================================================================================
+#introduce shard to the routers
+#========================================================================================================================
+docker exec -it mongo_Shard1 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet1/mongo_ReplicaSet1_Node1\")' | mongosh"
+docker exec -it mongo_Shard2 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet2/mongo_ReplicaSet2_Node1\")' | mongosh"
+docker exec -it mongo_Shard3 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet3/mongo_ReplicaSet3_Node1\")' | mongosh"
+
+
+#========================================================================================================================
+#get shard status
+#========================================================================================================================
+docker exec -it mongo_Shard1 bash -c "echo 'sh.status()' | mongosh"
+
+#========================================================================================================================
+#create test db in shard mongo_ReplicaSet_1
+#========================================================================================================================
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'use testDb' | mongosh"
+
+#========================================================================================================================
+#enable sharing for new db
+#========================================================================================================================
+docker exec -it mongo_Shard1 bash -c "echo 'sh.enableSharding(\"testDb\")' | mongosh"
+
+#========================================================================================================================
+#create test collection
+#========================================================================================================================
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+
+#========================================================================================================================
+#shard based on the key
+#========================================================================================================================
+docker exec -it mongo_Shard1 bash -c "echo 'sh.shardCollection(\"testDb.testCollection\", {\"shardingField\" : 1})' | mongosh"
+
+#========================================================================================================================
+#web server
+#========================================================================================================================
+nodemon server.js

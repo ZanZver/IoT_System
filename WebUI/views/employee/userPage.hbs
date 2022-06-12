@@ -1,0 +1,32 @@
+<h3><a class="btn btn-secondary" href="/home"><i class="fa fa-plus"></i> Logout</a> Item list</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Device type</th>
+            <th>Number of devices</th> 
+            <!-- <th>Mobile</th>
+            <th>City2</th> -->
+            <th>See all</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {{#each list}}
+        <tr>
+                <td>{{@key}}</td>
+                <td>{{this}}</td>
+                <!-- 
+                <td>{{this.smart_light}}</td>
+                <td>{{this.smart_fridge}}</td>
+                <td>{{this.smart_vacuum}}</td>
+                
+                <td>{{this.mobile}}</td>
+                <td>{{this.city}}</td>
+                -->
+                <td>
+                    <a href="/devices/{{@key}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a> <!-- /devices/{{key}}-->
+                </td> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

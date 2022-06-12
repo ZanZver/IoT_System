@@ -1,0 +1,30 @@
+\begin{lstlisting}[language=Python, caption=Showcase of createUser function]
+def createUser(num):
+    for i in range(num):
+        firstname = names.get_first_name()
+        lastname = names.get_last_name()
+        items = ["", str(random.randrange(1,999))]
+        random_item = random.choice(items)
+        random_email = random.choice(emailProviders)
+        random_address = real_random_address()
+        #print(random_item)
+        mydict = {
+                "Username": firstname + lastname,
+                "Password": randomword(10),
+                "Email": firstname + "." + lastname + random_item + random_email,
+                "Name": firstname,
+                "Surname": lastname,
+                "Location": {
+                    "Address": [
+                        random_address["address1"],
+                        random_address["address2"]
+                    ],
+                    "Postcode": random_address["postalCode"],
+                    "City": random_address["state"],
+                    "Country": "United States"
+                }
+        }
+        x = colUsers.insert_one(mydict)
+        createItAll(x.inserted_id)
+        createHistory(x.inserted_id)
+\end{lstlisting}

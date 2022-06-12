@@ -1,0 +1,26 @@
+\begin{lstlisting}[language=Python, caption=Showcase of createItAll function]
+def createItAll(UserID):
+    myDict = createDevices()
+    colIoT_Customer_Device.insert_one(
+        { "UserID" : str(UserID),
+          "smart_light": myDict["smart_light"],
+          "smart_fridge": myDict["smart_fridge"],
+          "smart_vacuum": myDict["smart_vacuum"]
+        })
+    
+    dict1 = createDeviceInfo()
+    try:
+        dict2 = colIoT_Device_Info.find_one()
+        for deviceTypes in dict1.keys():
+            for manufacturer in dict1[deviceTypes].keys():
+                for modelName in list(dict1[deviceTypes][manufacturer])[0].keys():
+                    for serialNumber in list(dict2[deviceTypes][manufacturer])[0][modelName]["Serial_Numbers"]:
+                        list(dict1[deviceTypes][manufacturer])[0][modelName]["Serial_Numbers"].append(serialNumber)
+        
+        oldquery = colIoT_Device_Info.find_one()
+        newquery = { "$set": dict1 }
+        
+        colIoT_Device_Info.update_one(oldquery, newquery)
+    except:
+        colIoT_Device_Info.insert_one(dict1)
+\end{lstlisting}

@@ -1,0 +1,75 @@
+<style>
+#circleOffline {
+      width: 15px;
+      height: 15px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: red;
+    }
+#circleOnline {
+      width: 15px;
+      height: 15px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: green;
+    }
+
+#lightColour {
+      width: 15px;
+      height: 15px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: rgb(84, 85, 84);
+    }
+</style>
+
+<form action="/home" method="POST" autocomplete="off">
+        <button type="Back" class="btn btn-login" style="float: right;"><i class="fa fa-database"></i> Back</button>
+</form>
+<h3><a class="btn btn-secondary" href="/home"><i class="fa fa-plus"></i> Logout</a> Smart vacuum</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Device ID</th>
+            <th>Online statuts</th>
+            <th>Device manufacturer</th>
+            <th>Model</th>
+            <th>Communication protocol set</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+                <td>{{@key}}</td>
+
+                {{#if this.Device_Details.Online_Status}}
+                <td>
+                    <p>Online</p>
+                    <p id="circleOnline"></p>
+                </td>
+                {{else}}
+                <td>
+                    <p>Offline</p>
+                    <p id="circleOffline"></p>
+                </td>
+                {{/if}}
+
+                <td>{{this.Device_Details.DeviceManufacturer}}</td>
+                <td>{{this.Device_Details.Model}}</td>
+            
+                
+                <td>{{this.Device_Details.Communication_Protocol_Set}}</td>
+
+                <td>
+                    <a href="/devices/smart_vacuum/edit/{{@key}}"><i class="fa fa-cogs" aria-hidden="true"></i></a> 
+                    <a href="/devices/smart_vacuum/delete/{{@key}}" onclick="return confirm('Are you sure to delete this record ?');">
+                        <i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

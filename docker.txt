@@ -1,0 +1,31 @@
+docker network rm mongoCluster
+
+docker network create mongoCluster
+
+docker run -d -p 30017:27017 --name mongo_DB_1 --network mongoCluster mongo:5 mongod --replSet dockerMongoReplicaSet --bind_ip localhost,mongo_DB_1
+docker run -d -p 30028:27017 --name mongo_DB_2 --network mongoCluster mongo:5 mongod --replSet dockerMongoReplicaSet --bind_ip localhost,mongo_DB_2
+docker run -d -p 30039:27017 --name mongo_DB_3 --network mongoCluster mongo:5 mongod --replSet dockerMongoReplicaSet --bind_ip localhost,mongo_DB_3
+
+docker exec -it mongo_DB_1 mongosh --eval "rs.initiate({
+ _id: \"dockerMongoReplicaSet\",
+ members: [
+   {_id: 0, host: \"mongo_DB_1\"},
+   {_id: 1, host: \"mongo_DB_2\"},
+   {_id: 2, host: \"mongo_DB_3\"}
+ ]
+})"
+
+docker exec -it mongo_DB_1 mongosh --eval "rs.status()"
+
+docker stop mongo_DB_1
+
+docker exec -it mongo_DB_2 mongosh --eval "rs.status()"
+
+
+docker stop mongo_DB_1
+docker stop mongo_DB_2
+docker stop mongo_DB_3
+
+docker rm mongo_DB_1
+docker rm mongo_DB_2
+docker rm mongo_DB_3

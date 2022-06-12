@@ -1,0 +1,34 @@
+\subsection{Implementation}
+\subsubsection{Step 1 - Database design}
+Database design was done in design section above. From there, we are implementing concepts bellow.
+
+\subsubsection{Step 2 - Create Docker containers}
+\subsubsubsection{Docker compose for nodes/replica sets}
+\input{Report/IoTNoSQLDatabaseAPI/dockerItems/dockerComposeNodes}
+\subsubsubsection{Docker compose for config servers}
+\input{Report/IoTNoSQLDatabaseAPI/dockerItems/dockerComposeConfig}
+\subsubsubsection{Docker compose for routers}
+\input{Report/IoTNoSQLDatabaseAPI/dockerItems/dockerComposeRouters}
+\subsubsubsection{Execute docker compose}
+\input{Report/IoTNoSQLDatabaseAPI/dockerItems/dockerComposeRun}
+\subsubsubsection{Showcase of docker containers}
+\input{Report/IoTNoSQLDatabaseAPI/dockerItems/dockerFinal}
+
+\subsubsection{Step 3 - Fill the database}
+To fill the database, Python scrip was used for inserting random data.
+\newline
+First thing is to specify how many users we want. 
+\input{Report/IoTNoSQLDatabaseAPI/pythonFiller/fillTheDB}
+Based on the input number (10 in our case) users are going to be created.
+\input{Report/IoTNoSQLDatabaseAPI/pythonFiller/createUser}
+When we create the user, we also create devices for the user.
+\input{Report/IoTNoSQLDatabaseAPI/pythonFiller/createUserDevices}
+As noted in the code, history for device is also generated.
+\input{Report/IoTNoSQLDatabaseAPI/pythonFiller/createDeviceHistory}
+
+\subsubsection{Step 4 - API}
+Connect the database with API
+\input{Report/IoTNoSQLDatabaseAPI/APIconnect/mongoose}
+
+\subsubsubsection{Step 5 - Indexes}
+\input{Report/IoTNoSQLDatabaseAPI/indexes/indexes}

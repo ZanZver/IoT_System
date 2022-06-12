@@ -1,0 +1,24 @@
+<h3>{{viewTitle}}</h3>
+
+<form action="/home" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{user._id}}">
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Email" value="{{user.email2}}">
+        <div class="text-danger">
+            {{user.emailError}}</div>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="userPassword" placeholder="Password" value="{{user.fullName2}}">
+        <div class="text-danger">
+            {{user.fullNameError}}</div>
+    </div>
+
+    <div class="form-group">
+        <a class="btn btn-secondary" href="/forgotPassword"><i class="fa fa-list-alt"></i> Forgot passowrd</a>
+        <a class="btn btn-secondary" href="/register"><i class="fa fa-list-alt"></i> Register</a>
+        <button type="login" class="btn btn-login" style="float: right;"><i class="fa fa-database"></i> Login</button>
+    </div>
+
+</form>

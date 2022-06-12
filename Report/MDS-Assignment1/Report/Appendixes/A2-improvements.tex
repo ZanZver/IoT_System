@@ -1,0 +1,54 @@
+ \subsection{Improvements}
+  Here is the list of improvements that would be useful in the application. Node that improvements are not listed in any particular order. If application would go into production, some of them could not be ignored (example: HTTPS).
+  
+\begin{itemize}
+  \item NodeJS to docker
+  \begin{itemize}
+    \item at the moment, web server is running in terminal. It would be better to have docker config for it as we do have for database. With this, it is much simpler to "move" the project
+  \end{itemize}
+  
+  \item TLS/SLL connection
+  \begin{itemize}
+    \item connection to the database is not secure. To improve that, we would implement TLS/SSL.
+  \end{itemize}
+  
+  \item MongoDB LDAP user connection
+  \begin{itemize}
+    \item At the moment, only specified users can connect to our cluster with MongoDB. If this would be used in real world, we wold need to monitor connections from inside of the company. With LDAP, we can simply assign roles to users as permissions are needed. Root user shall not be used.
+  \end{itemize}
+
+  \item HTTPS with reverse proxy
+  \begin{itemize}
+    \item If this application would be on public domain, HTTPS would be crucial for this since it encrypts the connection. Also, if this would be self hosted with the company, we would need to set up some network rules and reverse proxy is one of them. One of the industry best options would be to use CloudFlare in front to defend application against DDOS attacks or any other bots \parencite{web:Cloudflare}.  
+  \end{itemize}
+  
+  \item 2FA
+  \begin{itemize}
+    \item 2 factor authentication is a must now days for security. This is something our application should have in production.
+  \end{itemize}
+  
+  \item encrypt data
+  \begin{itemize}
+    \item Now days, security breaches are all over the world. To combat this, we would encrypt our data so hackers cannot see what we have stored.
+  \end{itemize}
+  
+  \item DevOPS
+  \begin{itemize}
+    \item In a team, having DevOPS pipeline would improve the delivery of the code. For example, fronted and backend could work on one task independently and when it comes to code merge, it would be possible due to DevOPS and its day-to-day testing \parencite{web:MSDevOPS}.
+  \end{itemize}
+  
+  \item Improved frontend
+  \begin{itemize}
+    \item At the moment, NodeJS application is just for demonstration purposes. It is simple but it needs improvement and some optimisation.
+  \end{itemize}
+  
+  \item Logging
+  \begin{itemize}
+    \item Servers do not send any logs back in case that anything would fail. We could use 3rd party applications like Graylog and/or Grphana to produce and visualise logs from database.
+  \end{itemize}
+  
+  \item Analytics
+  \begin{itemize}
+    \item In this version, no user analytics is being produced. Database is capable of producing it, but it was not implemented. Example of analytics that we can have: number of users, most common device, etc...
+  \end{itemize}
+\end{itemize}

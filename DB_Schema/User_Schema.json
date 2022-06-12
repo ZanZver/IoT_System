@@ -1,0 +1,94 @@
+{
+    "ID": "1",
+    "User_Info": {
+        "Username": "",
+        "Password": "",
+        "Name": "",
+        "Surname": "",
+        "Location": {
+            "Address":[],
+            "Postcode": "",
+            "City": "",
+            "Country": ""
+        }
+    },
+    "IoT_Device": {
+        "1":{
+            "Name": "Smart light",
+            "1":{
+                "Device_Details":{
+                    "Online_Status": "",
+                    "Model": "",
+                    "Serial_Number": "",
+                    "Last_Update": {
+                        "Date": "", 
+                        "Version": "", 
+                        "Update_Pending": ""
+                    },
+                    "Communication_Protocol_Set":[]
+                }
+                ,
+                "Device_Status":{
+                    "Colour": ""   
+                }
+            }
+        },
+        "2":{
+            "Name": "Smart fridge",
+            "Device_Details":{
+                "Online_Status": "",
+                "Model": "",
+                "Serial_Number": "",
+                "Last_Update": {
+                    "Date": "", 
+                    "Version": "", 
+                    "Update_Pending": ""
+                },
+                "Communication_Protocol_Set":[]
+            },
+            "Device_Status":{
+                "FridgeTemerature": "",
+                "FreezerTemperature": "",
+                "Items_In_Fridge": {
+                    "Item_1":"", 
+                    "Item_2":"",
+                    "Item_3":"", 
+                    "Total": "SUM"
+                },
+                "Items_In_Freezeer": {
+                    "Item_1":"", 
+                    "Item_2":"",
+                    "Item_3":"", 
+                    "Total": "SUM"
+                }
+            }
+        },
+        "3":{
+            "Name": "Smart vacuum",
+            "Device_Details": {
+                "Online_Status": "",
+                "Model": "",
+                "Serial_Number": "",
+                "Last_Update": {
+                    "Date": "", 
+                    "Version": "", 
+                    "Update_Pending": ""
+                },
+                "Communication_Protocol_Set":[]
+            },
+            "Device_Status":{
+                "Battery_Percentage": "",
+                "Dust_Disposer": {
+                    "Status": "",
+                    "Last_Emptied": ""
+                },
+                "Cleaning_Schedule": {
+                    "Last_Cleaning": [], 
+                    "Next_Cleaning": [], 
+                    "Cleaning_Plan": "", 
+                    "Cleaning_Time_Schedule": [] 
+                }
+            }
+        }
+    }
+}
