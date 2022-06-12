@@ -1,0 +1,50 @@
+\begin{lstlisting}[caption=Docker Compose Config Version]
+version: '2'
+services:
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Docker Compose Config 1]
+mongo_Config1:
+      container_name: mongo_Config1
+      image: mongo
+      command: mongod --configsvr --replSet mongo_ReplicaSet1_Conf --dbpath /data/db --port 27017
+      environment:
+        TERM: xterm
+      expose:
+        - "27017"
+      volumes:
+        - mongo_Config1:/data/db
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Docker Compose Config 2]
+mongo_Config2:
+      container_name: mongo_Config2
+      image: mongo
+      command: mongod --configsvr --replSet mongo_ReplicaSet1_Conf --dbpath /data/db --port 27017
+      environment:
+        TERM: xterm
+      expose:
+        - "27017"
+      volumes:
+        - mongo_Config2:/data/db
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Docker Compose Config 3]
+  mongo_Config3:
+      container_name: mongo_Config3
+      image: mongo
+      command: mongod --configsvr --replSet mongo_ReplicaSet1_Conf --dbpath /data/db --port 27017
+      environment:
+        TERM: xterm
+      expose:
+        - "27017"
+      volumes:
+        - mongo_Config3:/data/db
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Docker Compose storage for Config]
+volumes:
+  mongo_Config1: {}
+  mongo_Config2: {}
+  mongo_Config3: {}
+\end{lstlisting}

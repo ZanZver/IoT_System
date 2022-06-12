@@ -1,0 +1,58 @@
+\section{Types of NoSQL databases}
+
+NoSQL stands for not structured SQL. Since there is no structure, a lot of companies have created NoSQL management system in different ways. All of them are trying to achieve the same goal of efficiency and uptime but with different approaches \parencite{web:Hackolade}. Here are some of more well known and used approaches:
+\begin{itemize}
+  \item NoSQL Document
+  \begin{itemize}
+      \item basic unit of data is "Document", we would call that Row in SQL,
+      \item document is ordered set of key-value pairs,
+      \item are schema free,
+      \item represented simple structure is: database, collection (or table in SQL), document.
+  \end{itemize}
+  
+  \item NoSQL Columnar
+  \begin{itemize}
+      \item data is stored with column oriented model,
+      \item uses keyspace model which is similar to schema in relational databases,
+      \item represented simple structure is: keyspace, column family, rows, columns.
+  \end{itemize}
+  
+  \item NoSQL Property Graph
+  \begin{itemize}
+      \item organises data in graph represented structure,
+      \item is made of nodes (represents an entity) and edges (represents connection/relationships between two nodes).
+  \end{itemize}
+  
+  \item NoSQL Key-Value
+  \begin{itemize}
+      \item every item is stored as key-value,
+      \item data is stored as a collection of key-value pairs,
+      \item key must be unique.
+  \end{itemize}
+  
+  \item NoSQL Multi-model
+  \begin{itemize}
+      \item joins the previous NoSQL types (Document, Graph, Key-Value) together,
+      \item instead of using 3 different NoSQL types in a project, 1 multi-model can be used to provide the same functionality.
+  \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{longtable}{ |l|l|l| } 
+ \hline
+ NoSQL type & DB provider & Well known for \\ 
+ \hline
+ Document & \vtop{\hbox{\strut MongoDB,}\hbox{\strut Couchbase,}\hbox{\strut AmazonDocument DB,}\hbox{\strut etc...}} & \vtop{\hbox{\strut Used in big data companies}\hbox{\strut(example: BCU, Tesco)}} \\ 
+ \hline
+ Columnar & \vtop{\hbox{\strut Cassandra DataStax,}\hbox{\strut HBase,}\hbox{\strut BigTable,}\hbox{\strut etc...}} & \vtop{\hbox{\strut Used for big/enormous data storage }\hbox{\strut(example: Facebook, Netflix)}} \\ 
+ \hline
+ Property Graph & \vtop{\hbox{\strut Neo4j,}\hbox{\strut JanusGraph,}\hbox{\strut TigerGraph,}\hbox{\strut etc...}} & Fast relationship queries \\ 
+ \hline
+ Key-Value & \vtop{\hbox{\strut DynamoDB,}\hbox{\strut Redis,}\hbox{\strut Aerospike,}\hbox{\strut etc...}} & Fast and simply scalable \\ 
+ \hline
+ Multi-model & \vtop{\hbox{\strut CosmosDB,}\hbox{\strut Marklogic,}\hbox{\strut OrientDB,}\hbox{\strut etc...}} & Combination of NoSQL types \\ 
+ \hline
+
+\caption{NoSQL types compared}
+\end{longtable}
+\end{center}

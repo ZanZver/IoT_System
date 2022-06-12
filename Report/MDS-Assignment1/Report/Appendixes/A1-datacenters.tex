@@ -1,0 +1,11 @@
+\subsection{Data centers}
+In the industry, the big companies have their own data centers or they are renting them from other companies like Amazon and their AWS \parencite{villamizar2016infrastructure}.
+\subsubsection{Data centers across the globe}
+Once you put data request across any of the websites, data is usually "piped" from your router, to ISP you have which connects you to the data center that requests is allocated for. This means, data needs to travel geographically which can take longer if it is across the globe \parencite{benson2010understanding}. 
+To increase speed, companies are deploying data centers across the globe. If our application would be used worldwide, we would need to split our database. This can be done with "sharding". Lets assume the application originated in UK and that resulted in us having data in one DB already - UK shard. After some data analysis, we see that some of our customers are originating from US. To increase the speed for them, we build another shard - US shard. Later on we discover that Asian markets are joining in as well. This can lead to creation of third shard - Singapore shard.
+Now we can observe the shard activity. If one shard becomes more active than the others, we can scale just one shard, or opposite, we can remove shard if it becomes financially unnecessary \parencite{alizadeh2010data}.
+
+
+\subsubsection{Data rules}
+As mentioned in the subsection above, one of the data centers is in the UK. Since UK is no longer a part of EU, GDPR \parencite{truong2019gdpr} is not effective on UK, but there are some other data protections placed by UK government that we would need to follow. In case our data would be in EU, we would need to respect GDPR policies in place.
+Mentioned above is also Asian market. Country with the biggest population there is China but, we decided against putting shard there. The reason is "the great firewall of China". Chinese data policies are strict in sense of their government having access to all of the data. Due to privacy and anonymity, it is a better decision to have data center close to China but not in the country. This is the reason why third shard is in Singapore and not China \parencite{clayton2006ignoring}.

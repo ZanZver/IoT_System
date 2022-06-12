@@ -1,0 +1,187 @@
+\paragraph{Run docker compose files}\mbox{}\\
+setup replica $\xrightarrow{}$ set nodes - 5 nodes per 3 replica sets $\xrightarrow{}$ 15 docker nodes are created
+\begin{lstlisting}[language=Bash, caption=Create 15 Mongo nodes]
+sudo docker-compose -f docker-compose.yaml up -d
+\end{lstlisting}
+setup config $\xrightarrow{}$ 3 config (docker) servers are running
+\begin{lstlisting}[language=Bash, caption=Create config servers]
+sudo docker-compose -f mongod.yaml up -d
+\end{lstlisting}
+setup router $\xrightarrow{}$ 3 mongos (router) dockers are running
+\begin{lstlisting}[language=Bash, caption=Create router servers]
+sudo docker-compose -f mongos.yaml up -d
+\end{lstlisting}
+
+%=========================================================================================================
+% configure config servers replica set
+%=========================================================================================================
+\paragraph{Configure config servers replica set}\mbox{}\\
+Replica set 1
+\begin{lstlisting}[language=Bash, caption=Set config1]
+docker exec -it mongo_Config1 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    })
+' | mongosh"
+\end{lstlisting}
+Replica set 2
+\begin{lstlisting}[language=Bash, caption=Set config2]
+docker exec -it mongo_Config2 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    }
+)' | mongosh"
+\end{lstlisting}
+Replica set 3
+\begin{lstlisting}[language=Bash, caption=Set config3]
+docker exec -it mongo_Config3 bash -c "echo 'rs.initiate(
+    {_id: \"mongo_ReplicaSet1_Conf\",configsvr: true, members: [
+        { _id : 0, host : \"mongo_Config1\" },
+        { _id : 1, host : \"mongo_Config2\" }, 
+        { _id : 2, host : \"mongo_Config3\" }
+        ]
+    }
+)' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% check config server replica set status
+%=========================================================================================================
+\paragraph{Check config server replica set status}\mbox{}\\
+\begin{lstlisting}[language=Bash, caption=Check replica set status]
+docker exec -it mongo_Config1 bash -c "echo 'rs.status()' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% build shard replica set
+%=========================================================================================================
+\paragraph{Build shard replica set}\mbox{}\\
+Replica set 1
+\begin{lstlisting}[language=Bash, caption=Build replica set 1]
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet1\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet1_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet1_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet1_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet1_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet1_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+\end{lstlisting}
+Replica set 2
+\begin{lstlisting}[language=Bash, caption=Build replica set 2]
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet2\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet2_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet2_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet2_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet2_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet2_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+\end{lstlisting}
+Replica set 3
+\begin{lstlisting}[language=Bash, caption=Build replica set 3]
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'rs.initiate(
+    {_id : \"mongo_ReplicaSet3\", members: [
+        { _id : 0, host : \"mongo_ReplicaSet3_Node1\" },
+        { _id : 1, host : \"mongo_ReplicaSet3_Node2\" },
+        { _id : 2, host : \"mongo_ReplicaSet3_Node3\" },
+        { _id : 3, host : \"mongo_ReplicaSet3_Arbiter\", arbiterOnly: true},
+        { _id : 4, host : \"mongo_ReplicaSet3_Backup\", hidden: true}
+        ]
+    }
+)' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% check status primary-secondary
+%=========================================================================================================
+\paragraph{Check status primary-secondary}\mbox{}\\
+Status for replica set 1
+\begin{lstlisting}[language=Bash, caption=Check status of replica set 1]
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'rs.status()' | mongosh"
+\end{lstlisting}
+Status for replica set 2
+\begin{lstlisting}[language=Bash, caption=Check status of replica set 2]
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'rs.status()' | mongosh"
+\end{lstlisting}
+Status for replica set 3
+\begin{lstlisting}[language=Bash, caption=Check status of replica set 3]
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'rs.status()' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% introduce shard to the routers
+%=========================================================================================================
+\paragraph{Introduce replica set to the routers}\mbox{}\\
+Add mongo{\_}Shard1
+\begin{lstlisting}[language=Bash, caption=Introduce replica 1]
+docker exec -it mongo_Shard1 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet1/mongo_ReplicaSet1_Node1\")' | mongosh"
+\end{lstlisting}
+Add mongo{\_}Shard2
+\begin{lstlisting}[language=Bash, caption=Introduce replica 2]
+docker exec -it mongo_Shard2 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet2/mongo_ReplicaSet2_Node1\")' | mongosh"
+\end{lstlisting}
+Add mongo{\_}Shard3
+\begin{lstlisting}[language=Bash, caption=Introduce replica 3]
+docker exec -it mongo_Shard3 bash -c "echo 'sh.addShard(\"mongo_ReplicaSet3/mongo_ReplicaSet3_Node1\")' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% get shard status
+%=========================================================================================================
+\paragraph{Get shard status}\mbox{}\\
+\begin{lstlisting}[language=Bash, caption=Get shard status]
+docker exec -it mongo_Shard1 bash -c "echo 'sh.status()' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% create test db
+%=========================================================================================================
+\paragraph{Create test db}\mbox{}\\
+Create test db in shard mongo{\_}ReplicaSet{\_}1 for testing.
+\begin{lstlisting}[language=Bash, caption=Create test db]
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'use testDb' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% enable sharding for new db
+%=========================================================================================================
+\paragraph{Enable sharding for new db}\mbox{}\\
+Test sharding of new database.
+\begin{lstlisting}[language=Bash, caption=Enable sharding for new db]
+docker exec -it mongo_Shard1 bash -c "echo 'sh.enableSharding(\"testDb\")' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% create test collection
+%=========================================================================================================
+\paragraph{Create test collection}\mbox{}\\
+Create test collection for further testing.
+\begin{lstlisting}[language=Bash, caption=Create test collection RS1]
+docker exec -it mongo_ReplicaSet1_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+\end{lstlisting}
+\begin{lstlisting}[language=Bash, caption=Create test collection RS2]
+docker exec -it mongo_ReplicaSet2_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+\end{lstlisting}
+\begin{lstlisting}[language=Bash, caption=Create test collection RS3]
+docker exec -it mongo_ReplicaSet3_Node1 bash -c "echo 'db.createCollection(\"testDb.testCollection\")' | mongosh"
+\end{lstlisting}
+
+%=========================================================================================================
+% shard based on the key
+%=========================================================================================================
+\paragraph{Shard based on the key}\mbox{}\\
+Test sharding collection based on the key.
+\begin{lstlisting}[language=Bash, caption=Shard based on the key]
+docker exec -it mongo_Shard1 bash -c "echo 'sh.shardCollection(\"testDb.testCollection\", {\"shardingField\" : 1})' | mongosh"
+\end{lstlisting}

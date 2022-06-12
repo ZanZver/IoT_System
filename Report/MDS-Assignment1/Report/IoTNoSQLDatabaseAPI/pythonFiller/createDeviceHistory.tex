@@ -1,0 +1,14 @@
+\begin{lstlisting}[language=Python, caption=Showcase of createHistory]
+def createHistory(userID):
+    lightHistoryGenerator = random.randrange(1,30)
+    fridgeHistoryGenerator = random.randrange(1,30)
+    vacuumHistoryGenerator = random.randrange(1,30)
+    for i in range(lightHistoryGenerator):
+        colIoT_Device_History.insert_one({str(userID): {"1": createTheSmartLight()["Device_Status"]}})
+    
+    for i in range(fridgeHistoryGenerator):
+        colIoT_Device_History.insert_one({str(userID): {"2": createTheFridge()["Device_Status"]}})
+        
+    for i in range(vacuumHistoryGenerator):
+        colIoT_Device_History.insert_one({str(userID): {"3": createTheVauum()["Device_Status"]}})
+\end{lstlisting}
